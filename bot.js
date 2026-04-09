@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
+const http = require('http');
 
 // === CONFIG (set these as environment variables on Render) ===
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
@@ -134,4 +135,11 @@ bot.on('polling_error', (error) => {
   console.error('Polling error:', error.code, error.message);
 });
 
-console.log('Press Ctrl+C to stop the bot.\n');
+// Simple HTTP server to keep Render's free Web Service happy
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Linklet Telegram Bot is running!');
+}).listen(PORT, () => {
+  console.log(`Health check server on port ${PORT}`);
+});
