@@ -1,0 +1,13 @@
+{
+  "name": "linklet-telegram-bot",
+  "version": "1.0.0",
+  "description": "AI customer support bot for Linklet",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0",
+    "axios": "^1.7.0"
+  }
+}
